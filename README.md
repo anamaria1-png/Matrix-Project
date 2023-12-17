@@ -1,3 +1,23 @@
+DESCRIPTION OF THE GAME- FLAPPY BIRD!
+1. Display Initialization:
+
+    We will set up the LED matrix to represent the game screen. Define a 2D array to represent the pixels on the LED matrix.
+
+2. Bird and Obstacle Movement:
+
+    Represent the bird's position on the matrix. We will update its position to simulate flying (by changing its vertical position).
+    Generate and move obstacles (pipes or obstacles represented by LED pixels) from right to left.
+
+3. Game Loop:
+
+    Inside the loop, continuously update the display to show the bird's movement and obstacles.
+    Check for collisions between the bird and the obstacles. If a collision occurs, end the game.
+
+4. User Controls:
+
+    Use buttons or switches connected to the Arduino to control the bird's movement. For instance, pressing a button could make the bird jump or move upwards.
+
+
 A. MENU REQUIREMENTS
 
     Introduction:
