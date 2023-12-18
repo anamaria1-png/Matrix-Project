@@ -73,3 +73,10 @@ B.GAME REQUIREMENTS
         Implement dynamic progression within a level or a series of fixed levels leading to an endgame scenario. Introduce elements of randomness to enhance gameplay variability and excitement.
 
 
+COMPONENTS: 
+-an LCD
+-a joystick
+-a buzzer 
+-a led matrix.
+
+
