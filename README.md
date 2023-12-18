@@ -67,6 +67,4 @@ B.GAME REQUIREMENTS
         Maintain a sense of escalating difficulty throughout the gameplay. This progression can occur within a single level or across multiple levels.
         Implement dynamic progression within a level or a series of fixed levels leading to an endgame scenario. Introduce elements of randomness to enhance gameplay variability and excitement.
 
-        C.PICTURE OF THE SETUP
-        ![WhatsApp Image 2023-12-18 at 10 41 19_4b7226bf](https://github.com/anamaria1-png/Matrix-Project/assets/89720718/bf83e6e8-c0bd-4825-a81c-e42b69940a79)
 
