@@ -1,21 +1,26 @@
 DESCRIPTION OF THE GAME- FLAPPY BIRD!
-1. Display Initialization:
+How Flappy Bird Works
 
-    We will set up the LED matrix to represent the game screen. Define a 2D array to represent the pixels on the LED matrix.
+Description:
+Flappy Bird is a simple yet captivating game where the player controls a small character named "Flappy Bird" through an environment filled with pipe obstacles. The objective is to navigate through as many pipes as possible without hitting any of them.
+Gameplay Mechanics:
 
-2. Bird and Obstacle Movement:
+    Controlling Flappy Bird: The player controls the flight of Flappy Bird by pressing a button or a key to make it jump or fly. In the original game, a single button was used to make the bird flap, using gravity and force to propel it upwards.
 
-    Represent the bird's position on the matrix. We will update its position to simulate flying (by changing its vertical position).
-    Generate and move obstacles (pipes or obstacles represented by LED pixels) from right to left.
+    Game Environment: While automatically flying towards the right, Flappy Bird must avoid obstacles in the form of pipes. These pipes are positioned to alternate between rising and falling, creating spaces for the bird to pass through.
 
-3. Game Loop:
+    Scoring: Players earn points for each set of pipes passed without collision. The more pipes you pass, the higher your score increases.
 
-    Inside the loop, continuously update the display to show the bird's movement and obstacles.
-    Check for collisions between the bird and the obstacles. If a collision occurs, end the game.
+Failure Mechanics:
 
-4. User Controls:
+    Collision: The game ends when Flappy Bird hits any of the pipes or touches the screen's edges. Once the game ends, the score is displayed, and the player can choose to start again.
 
-    Use buttons or switches connected to the Arduino to control the bird's movement. For instance, pressing a button could make the bird jump or move upwards.
+Key Elements from the Flappy Bird Code:
+
+    Game Control: Managed through functions that react to button presses, controlling Flappy Bird's jump.
+    Bird and Pipe Movement: Functions responsible for the automatic forward movement of the bird and the pipes to create the impression of progression.
+    Scoring and Display: Functions that calculate and display the score on the screen.
+    Game Over: When the game ends, there are functions that handle displaying the "Game Over" message and restarting the game.
 
 
 A. MENU REQUIREMENTS
