@@ -1,7 +1,7 @@
 DESCRIPTION OF THE GAME- FLAPPY BIRD!
 How Flappy Bird Works
 
-Description:
+
 Flappy Bird is a simple yet captivating game where the player controls a small character named "Flappy Bird" through an environment filled with pipe obstacles. The objective is to navigate through as many pipes as possible without hitting any of them.
 Gameplay Mechanics:
 
@@ -78,5 +78,7 @@ COMPONENTS:
 -a joystick
 -a buzzer 
 -a led matrix.
+
+SEE HOW IT WORKS:https://youtube.com/shorts/TqHc-J2d6hU?feature=share
 
 
