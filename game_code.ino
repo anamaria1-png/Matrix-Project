@@ -42,10 +42,10 @@ void setup()
   MX.setIntensity(0, intensity);
   lcd.begin(16, 2);
   lcd.setCursor(0, 0);
-  lcd.print("Welcome!");  // Replace YourName with the actual player name
+  lcd.print("Welcome!");  
   Serial.println("");
   lcd.setCursor(0, 1);
-  lcd.print("How to Play:");  // Replace Flappy Bird with the actual game name
+  lcd.print("How to Play:");  
   delay (3000);
   lcd.clear();
   lcd.setCursor(0, 0);
