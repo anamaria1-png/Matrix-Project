@@ -4,20 +4,21 @@
 #include <LedControl.h>
 #include <Timer.h>
 #include <LiquidCrystal.h>
+#include <EEPROM.h>
 
-const byte rs = 9; const byte en = 8; const byte d4 = 7; const byte d5 = 6; const byte d6 = 5; const byte d7 = 4;
 // Define the LCD pin connections
-LiquidCrystal lcd(rs, en, d4, d5, d6, d7);
+LiquidCrystal lcd(9, 8, 7, 6, 5, 4);
 
 #define LED_PIN 13
 #define BUTTON_PIN 2
-
+#define arx A0
+#define ary A1
 #define DIN 12
 #define CS 11
 #define CLK 10
 int intensity = 1;
 
-LedControl MX = LedControl(12,11,10, 1);
+LedControl MX = LedControl(DIN, CLK, CS, 1);
 Gameplay game;
 Timer timer;
 
@@ -32,28 +33,33 @@ const float grav = 0.005;
 const float up = -0.05;
 const byte BirdX = 1;
 
+int EEPROMHighScoreAddress = 0;
+int EEPROMPlayerNameAddress = 100;
+
 void setup()
 {
   // Initialize the LCD
-  
   MX.setIntensity(0, intensity);
   lcd.begin(16, 2);
   lcd.setCursor(0, 0);
-  lcd.print("Welcome!");  
+  lcd.print("Welcome!");  // Replace YourName with the actual player name
   Serial.println("");
   lcd.setCursor(0, 1);
-  lcd.print("How to Play:");  
+  lcd.print("How to Play:");  // Replace Flappy Bird with the actual game name
   delay (3000);
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Fly and dont");
   lcd.setCursor(0, 1);
   lcd.print("hit the pipe");
-  
-  Serial.println("game flappy bird");
+   delay(3000);
+  lcd.clear();
+  lcd.setCursor(2, 0);
+  lcd.print("Flappy Bird");
+  lcd.setCursor(1, 1);
+  lcd.print("Press For Play");
 
-  // Set up your LCD messages (player name, game name, etc.)
-  //lcd.clear();
+  Serial.println("game flappy bird");
 
   Serial.begin(9600);
   MX.shutdown(0, false);
@@ -61,9 +67,12 @@ void setup()
   MX.clearDisplay(0);
   pinMode(BUTTON_PIN, INPUT_PULLUP); // Use INPUT_PULLUP to enable the internal pull-up resistor
   pinMode(LED_PIN, OUTPUT);
+ // pinMode(JOYSTICK_BUTTON, INPUT_PULLUP);
   randomSeed(analogRead(0));
   game.status = OFF;
   timer.every(30, ButtonPressScan);
+  loadHighScore();  // Load the high score from EEPROM
+  loadPlayerName(); // Load the player name from EEPROM
   // GameStart(true); // Remove this line from setup
 }
 
@@ -107,7 +116,7 @@ void MoveBird()
   lcd.setCursor(0, 0); // Adjust the cursor position based on your LCD layout
   lcd.print("Score: " + String(game.score));
   lcd.setCursor(0, 1); // Adjust the cursor position based on your LCD layout
-  lcd.println("Player:Ana");
+  lcd.println("Player: " + readPlayerName());
   Serial.println("Score: " + String(game.score));
 }
 
@@ -127,7 +136,7 @@ void GameStart(boolean ask)
     timer.after(4500, Pipe2Start);
     lcd.clear();
     lcd.setCursor(0, 0); // Adjust the cursor position based on your LCD layout
-    lcd.println("Player:Ana");
+    lcd.println("Player: " + readPlayerName());
 
     lcd.print(game.score);
     Serial.println("Score: " + String(game.score));
@@ -175,6 +184,7 @@ void screenburst()
 
 void gameOver()
 {
+  saveHighScore(); // Save the high score when the game is over
   displayScore(game.score);
   GameStart(false);
 
@@ -182,13 +192,16 @@ void gameOver()
   lcd.print("Game Over!");
   lcd.setCursor(0, 1);
   lcd.print("Score: " + String(game.score));
+  lcd.setCursor(1, 2);
+  lcd.print("High Score: " + String(readHighScore()));
   delay(1000);
   lcd.clear();
   lcd.setCursor(0, 0);
   lcd.print("Your Score:");
   lcd.print(game.score);
   lcd.setCursor(0, 1);
-  lcd.println("*Press To Start*");
+   lcd.print("High Score: " + String(readHighScore()));
+  //lcd.println("Press To Start");
 }
 
 void allOn(boolean on)
@@ -387,5 +400,50 @@ void error()
 void loop()
 {
   timer.update();
-  
+}
+
+// Function to save the high score in EEPROM
+void saveHighScore()
+{
+  int currentHighScore = readHighScore();
+  if (game.score > currentHighScore)
+  {
+    EEPROM.put(EEPROMHighScoreAddress, game.score);
+  }
+}
+
+// Function to read the high score from EEPROM
+int readHighScore()
+{
+  int highScore;
+  EEPROM.get(EEPROMHighScoreAddress, highScore);
+  return highScore;
+}
+
+// Function to save the player name in EEPROM
+void savePlayerName(String playerName)
+{
+  EEPROM.put(EEPROMPlayerNameAddress, playerName);
+}
+
+// Function to read the player name from EEPROM
+String readPlayerName()
+{
+  char playerName[16]; // Assuming the player name is a string with a maximum length of 15 characters
+  EEPROM.get(EEPROMPlayerNameAddress, playerName);
+  return String(playerName);
+}
+
+// Function to load the high score from EEPROM
+void loadHighScore()
+{
+  int highScore = readHighScore();
+  Serial.println("High Score: " + String(highScore));
+}
+
+// Function to load the player name from EEPROM
+void loadPlayerName()
+{
+  String playerName = readPlayerName();
+  Serial.println("Player Name: " + playerName);
 }
