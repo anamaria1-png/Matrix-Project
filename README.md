@@ -2,7 +2,9 @@ DESCRIPTION OF THE GAME- FLAPPY BIRD!
 How Flappy Bird Works
 
 
-Flappy Bird is a simple yet captivating game where the player controls a small character named "Flappy Bird" through an environment filled with pipe obstacles. The objective is to navigate through as many pipes as possible without hitting any of them.
+Flappy Bird is a simple yet captivating game where the player controls a small character named "Flappy Bird" through an environment filled with pipe obstacles. The objective is to navigate through as many pipes as possible without hitting any of them.I have chosen this game because I used to play it very much in my childhood and now I found an opportunity to make such game for myself.
+
+
 Gameplay Mechanics:
 
     Controlling Flappy Bird: The player controls the flight of Flappy Bird by pressing a button or a key to make it jump or fly. In the original game, a single button was used to make the bird flap, using gravity and force to propel it upwards.
@@ -76,7 +78,6 @@ B.GAME REQUIREMENTS
 COMPONENTS: 
 -an LCD
 -a joystick
--a buzzer 
 -a led matrix.
 
 SEE HOW IT WORKS:https://youtube.com/shorts/TqHc-J2d6hU?feature=share
